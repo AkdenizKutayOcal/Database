@@ -1,3 +1,4 @@
+import java.sql.*;
 import java.util.Scanner;
 
 public class Driver {
@@ -6,42 +7,21 @@ public class Driver {
 		
 		Scanner keyboard = new Scanner(System.in);
 		UI ui = new UI();
+		Connector cn = new Connector();
 		int operation;
 		
+		Connection conn = cn.createConnection();
 		
 		ui.loginMenuDisplay();
 		operation = keyboard.nextInt();
 		
-		ui.loginMenuOperations(operation,keyboard);
-		/*switch(operation) {
+		ui.loginMenuOperations(operation,keyboard,conn,cn);
 		
-		
-		case 1:
-			
-			System.out.println("Enter username and password:");
-			System.out.println("Username:");
-			String userName = keyboard.next();
-			System.out.println("Password:");
-			String password = keyboard.nextLine();
-			
-			ui.loginMenuActivate(userName, password);
-			break;
-			
-		case 2:
-			
-			System.out.println("SignUp");
-			break;
-			
-		case 3:
-			System.out.println("Thanks for using Ticketix...");
-			System.exit(0);
-			break;
-			
-		default:
-			System.out.println("Unknown Command");
-			break;
-		}
-*/
+		//ui.showEvents(conn, cn);
+		//ui.showTickets(conn, cn);
+		//ui.showCC(conn, cn);
+		//ui.showCoupon(conn, cn);
+	
 	}
 
 }

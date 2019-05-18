@@ -1,3 +1,4 @@
+import java.sql.Connection;
 import java.util.Scanner;
 
 public class UI {
@@ -12,20 +13,33 @@ public class UI {
 		System.out.println("3 - End Program");
 
 	}
-	public void loginMenuOperations(int operation,Scanner keyboard) {
+	public void loginMenuOperations(int operation,Scanner keyboard,Connection conn,Connector cn) {
 
 		switch(operation) {
 
-
 		case 1:
 
-			System.out.println("Enter username and password:");
-			System.out.println("Username:");
-			String userName = keyboard.next();
-			System.out.println("Password:");
-			String password = keyboard.nextLine();
-			System.out.println("user"+userName+" Pass"+password);
-			this.loginMenuActivate(userName, password);
+			do {
+				System.out.println("Enter username and password:");
+
+				/*String userName = keyboard.next();
+			String password = keyboard.next();
+				 */
+
+				String userName = "yenilmezm";
+				String password = "my8580";
+
+
+				if(cn.checkLogin(userName,password,conn)) {
+					System.out.println("Welcome");
+					break;
+				}
+				else {
+					System.out.println("Wrong Password or UserName");
+
+				}
+			}while(true);
+
 			break;
 
 		case 2:
@@ -44,10 +58,26 @@ public class UI {
 		}
 
 	}
-	public void loginMenuActivate(String userName,String password) {
+	public void showEvents(Connection conn,Connector cn) {
 
+		System.out.println("\n---Events Available---");
+		cn.displayEvents(conn);
+	}
 
+	public void showTickets(Connection conn,Connector cn) {
 
+		System.out.println("\n---Tickets Available---");
+		cn.displayTickets(conn);
+	}
 
+	public void showCC(Connection conn,Connector cn) {
+
+		System.out.println("\n---CC Available---");
+		cn.displayCC(conn);
+	}
+	public void showCoupon(Connection conn,Connector cn) {
+
+		System.out.println("\n---Coupon Available---");
+		cn.displayCoupon(conn);
 	}
 }
