@@ -8,7 +8,7 @@ public class Connector {
 
 	//  Database credentials
 	static final String USER = "SYSTEM";
-	static final String PASS = "Akdeniz98+";
+	static final String PASS = "";
 
 	public static Connection createConnection() {
 
